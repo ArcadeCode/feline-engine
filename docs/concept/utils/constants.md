@@ -7,5 +7,6 @@ FE need to have a lot of already ready constants for many tasks but mainly for m
 - ... Continue to add some values
 
 ## `fe::utils::Vector<T, N>` alias
-- `Vec2 = Vector<float, 2>`  : Useful for 2D spatial
-- `Vec2i = Vector<int, 2>`  : Useful for fixed positioning
+- `Vec2 = Vector<float, 2>`  : Useful for 2D spatial.
+- `Vec2i = Vector<int, 2>`  : Useful for fixed positioning.
+- `Vec4 = Vector<float, 4>`  : Useful for color spaces and alpha store.

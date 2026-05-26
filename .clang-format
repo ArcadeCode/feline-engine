@@ -1,0 +1,21 @@
+# Base style: start from WebKit and tweak
+BasedOnStyle: WebKit
+
+# Indentation
+IndentWidth: 4 # 4 spaces
+UseTab: Never  # always spaces
+
+# Brace style
+BreakBeforeBraces: Attach # K&R style: opening brace on the same line
+
+# Line length
+ColumnLimit: 100          # lines shouldn't exceed 100 chars
+
+# Alignment
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+
+# Short functions and control statements
+AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true

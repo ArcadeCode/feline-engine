@@ -9,7 +9,7 @@ Ici arrive toutes les questions majeur nécessaire à être répondu pour dével
     - Est-ce un framework intégrer à chauque jeu ? (Idiome Unity)
 - [ ] Comment le moteur gère-t-il la boucle principale (main loop) ? Qui contrôle le deltaTime, la synchronisation, etc. ?
 - [ ] Comment est organisé le cycle de vie du moteur ? (initialisation, update, shutdown)
-- [ ] Comment se gèrent les modules ? (audio, render, input...) → chargés dynamiquement ? statiquement liés ?
+- [X] Comment se gèrent les modules ? (audio, render, input...) → chargés dynamiquement ? statiquement liés ?
   - Chaque module proposera un ou plusieurs **services** dans une structure **EDA** (event driven architecture), chaque module peut **s'abonner** à des services d'autres modules.
 - [ ] Quelle est la philosophie d’extension du moteur ? (plugin system, hooks, scripting API, etc.)
 - [ ] Comment se fait la séparation entre engine et jeu ? (ex: le jeu appelle le moteur ou inversement ?)
@@ -47,13 +47,16 @@ Ici arrive toutes les questions majeur nécessaire à être répondu pour dével
 - [ ] Faut-il supporter le multi-pass rendering ou des pipelines custom ?
 - [ ] Comment gérer les materials (unified shading model ? PBR ?)
 - [ ] Est-ce que le moteur fournit un UI renderer intégré ?
+- [ ] Utiliseons nous JzAzBz color space pour le rendu ? (pour une meilleure gestion de la luminosité et du contraste) ou restons nous sur du RGB classique ?
 
 ## 🎮 Gameplay / Input / Scene
 - [ ] Comment représenter une scene ? (graph de nodes ? liste d’entités ? world ECS ?)
 - [ ] Qu’est-ce qu’un joueur d’un point de vue logique ? (input device ? entité ECS ? contrôleur ?)
 - [ ] Comment gérer plusieurs scenes simultanément (menu + monde en arrière-plan, etc.) ?
 - [ ] Comment se fait la transition de scène ? (streaming, destruction/reload, etc.)
-- [ ] Quelle est la API scripting (C, Lua, Python, Rust côté jeu...) ?
+- [X] Quelle est la API scripting (C, Lua, Python, Rust côté jeu...) ?
+    - Les jeux seront coder en C++ principalement, mais nous pourrons utiliser du Lua pour faire du scripting, par scripting on entandra manipuler les ECS, créers de nouveaux, éditer les anciens etc... En revanche, si un utilisateur voudrais "hacker" un composer de l'engine, il lui faudrais faire de la POO avec C++ (ou C pour les composants bas niveau).
+    - Pour l'instant le scripting Lua est mis à part, il sera mis en place concrètement plus tard, cela sera mise en place en utilisant un compilateur qui viendra créer une librairie statique intégrer au jeu, typiquement nous aurons un jeu avec un system intialisé en lua `system.lua`, le compilateur va lire ce fichier et renvoyer un fichier `system.scrt.cpp`, ce ficher sera ensuite lié statiquement au programme.
 
 ## 💾 Ressources / Assets / Data
 - [ ] Comment sont chargés les assets ? (runtime vs précompilés en “packages”)
@@ -63,8 +66,15 @@ Ici arrive toutes les questions majeur nécessaire à être répondu pour dével
 - [ ] Supporter le hot reload des assets et scripts ?
 
 ## 🧠 Outils / Pipeline
-- [ ] Faut-il un éditeur intégré ou des outils externes (type CLI, YAML, JSON...) ?
-- [ ] Comment les développeurs interagissent avec le moteur ? (API C, GUI, scripting)
+- [X] Faut-il un éditeur intégré ou des outils externes (type CLI, YAML, JSON...) ?
+    - Pour la v1.0, il n'y aura pas d'éditeur, uniquement des librairies.
+    - Il existera un outil CLI pour le build d'un jeu en un package prêt à la publication, cette outil viendra emballer les assets entre eux de manière optimisé, compilera le code en un executable en proposant dans le package les DLLs du Feline engine.
+    >[!WARNING] Proposer de compiler en un exécutable tous le code du développeur utilisateur implique de linker statiquement ses librairies dans le programme, il pourrait être intéressant d'avoir une commande `--dlls` pour proposer aux utilisateurs d'installer des librairies dynamiques.
+    - Par la suite existera un éditeur complet permettant beaucoup de tâches comme manipuler les scènes et les assets.
+- [X] Comment les développeurs interagissent avec le moteur ? (API C, GUI, scripting)
+    - Les développeurs utilise les headers de Féline engine, ainsi ils peuvent communiquer avec l'engine en utilisant des interfaces POO C++.
+    - Les déveoppeurs auront à leur disposition un outil CLI pour compiler un programme pour l'engine.
+    - FUTURE: Il y aura une interface GUI dans le future pour l'édition du jeu en temps réel.
 - [ ] Faut-il un système de logs unifié et configurable ?
 - [ ] Faut-il un profiling system intégré (perf, mémoire, allocations, draw calls...) ?
 - [ ] Comment gérer le debugging en multi-thread ?
