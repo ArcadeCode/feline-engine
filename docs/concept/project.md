@@ -15,7 +15,7 @@ Feline Engine is **intentionally focused on 2D/2.5D** but nowday modern GPU does
 - [ ] Developing a game engine which include :
     - A **clock scheduler** for main thread
     - A **job scheduler** for parallelizing ECS updates and other tasks.
-    - Abstraction layer for helping developper's communicate with the engine such as `IAudioSource`, `IDrawable`, ...
+    - Abstraction layer for helping developer's communicate with the engine such as `IAudioSource`, `IDrawable`, ...
     - An complete ECS system
     - A ressource manager for loading and caching assets.
     - A allocator manager for better memory management.
@@ -31,9 +31,9 @@ Feline Engine is **intentionally focused on 2D/2.5D** but nowday modern GPU does
 > This third goal isn't necessary. In fact this goal will be delayed after the first deploy-ready release. **GUI mustn't be obligatory for Feline to work !**
 
 > [!NOTE] Asterix
-> For now, Feline Engine will use OpenGL but, we will used an abstraction layer and migrate to vulkan later. This assure multiple good points :
+> For now, Feline Engine will use OpenGL but, we will used an abstraction layer and migrate to Vulkan later. This assure multiple good points :
 > - Vulkan is hardly more complex than OpenGL, using Vulkan before the first release will make the release take a lot more time.
-> - Using OpenGL & Vulkan will learn me everything I need on Graphic Backend and GPU devloppment with a good difficulty progession.
+> - Using OpenGL & Vulkan will learn me everything I need on Graphic Backend and GPU development with a good difficulty progression.
 > - This force me to use an abstraction layer between the backend and the engine which is an ideal idiomatic OOP schema.
 
 ### Optional but recommended goals
@@ -47,18 +47,18 @@ Feline Engine is **intentionally focused on 2D/2.5D** but nowday modern GPU does
 These section explains all majors modules of the engine, by "major" we imply that this modules can be individually tested by unit-tests.
 
 - `Ressource Manager` — Handler for importing and loading in RAM files who will be used by the engine.
-- `ECS Manager` — manages entities and components self-made in Rust for concurency security.
+- `ECS Manager` — manages entities and components self-made in Rust for concurrency security.
     - `Game components` — ready-to-use ECS components for any game packed in the engine.
-- `Job Scheduler (Manager)` — manages the execution of jobs in parallel, with a focus on ECS updates.
+- `Job Scheduler (Manager)` — [manages the execution of jobs in parallel](./core/job/job.md), with a focus on ECS updates.
 
-- `Render System` — graphic rendering system based on [SDL3](https://github.com/libsdl-org/SDL) mounted on C++ wrapper for better clarity.
-- [`Audio System`](./audio/main.md) — audio playback and management based on [miniaudio](https://miniaud.io/) bridged with [SDL3](https://github.com/libsdl-org/SDL) mounted on C++ wrapper for better clarity.
+- `Render System` — graphic rendering system based on [SDL3](https://github.com/libsdl-org/SDL) mounted [on abstracted layer](./render/render.md).
+- [`Audio System`](./audio/audio.md) — audio playback and management based on [miniaudio](https://miniaud.io/) bridged with [SDL3](https://github.com/libsdl-org/SDL) mounted on C++ wrapper for better clarity.
 
 ## Tools and techs
 ### Used tool
 Several tools will be used for this project:
 - **Makefile**: To automate the entire pipeline.
-- **CMake**: For C++ automation and C libary linking.
+- **CMake**: For C++ automation and C library linking.
 - **Cargo**: For Rust automation and testing.
 - **LLVM**: For language linking.
 - **Clang**: As C++, C and LLVM IR compilator.
@@ -70,22 +70,22 @@ Several tools will be used for this project:
 - **OpenGL** (C, static): For the Graphic Backend
 - **SDL3** (C, dynamic): For window management and calling OpenGL/Vulkan to do more advances things, it will also manager the audio mixer.
 - **miniaudio** (C, static): Manager audio playing, and send info to the mixer.
-- **imGui** (C, static): Mainly for debugging purprose, will display on top of the SDL window informations such as framerate, tickrate, memory load, ... It will be directly linked to SDL3.
+- **imGui** (C, static): Mainly for debugging purpose, will display on top of the SDL window informations such as framerate, tickrate, memory load, ... It will be directly linked to SDL3.
 
 
 ### Librairies to dev
-- **feline_core.dll** (Rust, dynamic, necessary): Main librairy who contain tools to communicate between feline librairies and standalone tools such as the main allocator, tick manager, ECS manager or job manager. Without this librairie, Feline Engine cannot work. Some part of this librairie will be made in Rust for better performance memory and allocation security, but the main interface will be in C for better integration with the rest of the engine.
+- **feline_core.dll** (Rust, dynamic, necessary): Main library who contain tools to communicate between feline librairies and standalone tools such as the main allocator, tick manager, ECS manager or job manager. Without this librairie, Feline Engine cannot work. Some part of this librairie will be made in Rust for better performance memory and allocation security, but the main interface will be in C for better integration with the rest of the engine.
 - **feline_graphic.dll** (C++, dynamic, unnecessary): Graphic interface and abstractions with SDL and graphic frameworks.
-- **feline_audio.dll** (C++, dynamic, unnecessary): Manage interface and abstactions with SDL mixer and miniaudio.
+- **feline_audio.dll** (C++, dynamic, unnecessary): Manage interface and abstractions with SDL mixer and miniaudio.
 
 > [!NOTE]
-> For optimization purprose, a game need to be compilable without unncessary librairies. This mean than `<feline_audio.dll>` and `<feline_graphic.dll>` are optionals, but without you never will hear something or see anything.
+> For optimization purpose, a game need to be compilable without unnecessary librairies. This mean than `<feline_audio.dll>` and `<feline_graphic.dll>` are optionals, but without you never will hear something or see anything.
 
 ### Used tech
 Several technologies will be used for this project :
 - **C++17**: Mainly for the `filesystem` update.
 - **C99**: Only because we use the same year version of C++.
-- **Rust 2025**: For ECS and job sheduler modules.
+- **Rust 2025**: For ECS and job scheduler modules.
 - **SDL 3.2**: We use the 3.2.x because it's the latest at date of 2025/06/09.
 - **Miniaudio v0.11.22**: We use the 0.11.22 because it's the latest at date of 2025/06/09.
 

@@ -1,8 +1,14 @@
 {
     "cSpell.words": [
-        "constexpr"
+        "Asterix",
+        "compilator",
+        "constexpr",
+        "Factorio",
+        "miniaudio",
+        "pathfinding",
+        "Rustc"
     ],
-     "terminal.integrated.profiles.windows": {
+    "terminal.integrated.profiles.windows": {
         "MSYS2 UCRT": {
             "path": "cmd.exe",
             "args": [
