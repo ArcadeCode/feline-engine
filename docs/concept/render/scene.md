@@ -1,0 +1,2 @@
+# What's is the ``Scene``?
+A `Scene` is an object representing a spatial environnement with `Drawable` object, each of this object contain inforamtions such thing as position coordinates, texture, mesh, shaders, ... The `Scene` contain also `Camera`'s, each can send "what is seeing" to a `Renderer`.

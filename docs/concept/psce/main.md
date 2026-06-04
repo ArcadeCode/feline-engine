@@ -1,5 +1,8 @@
 # 🔧 **Feline Engine — Polymorphic Stencil Compute Engine (PSCE) Design Note**
 
+> [WARNING] THIS IS NOT PLANNED
+> This PSCE is not planned before long time maybe will never be implemented.
+
 > Is Polymorphic cause it can use CPU on demand to compute, but was not design for this, this is a fallback.
 >
 > Project name : Panthera (Panthera)

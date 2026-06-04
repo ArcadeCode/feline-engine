@@ -7,16 +7,16 @@ This Todo file represent all phase of developpement of Feline Engine and the Fel
 - [X] [Answer design questions](./questions.md)
 - [X] Choosing the bridge to comunicate states and data between components.
 - [ ] Rendering design (see [render section](./render/main.md))
-    - [ ] Define `Renderer` architecture and its interface with Vulkan backend
+    - [ ] Define `Renderer` architecture and its interface with OpenGL backend
     - [ ] Design `Scene` structure and lifetime (creation, update, destruction)
     - [ ] Design `DrawableObject` base type and its subtypes (sprites, shapes, text)
     - [ ] Define culling strategy (viewport-based, frustum culling)
     - [ ] Define batching strategy (group by texture/shader)
     - [ ] Define post-processing pipeline (color grading, bloom, screen-space effects)
-    - [ ] Decide on shader management (precompiled SPIR-V ? runtime compilation ?)
+    - [ ] Decide on shader management (precompiled ? runtime compilation ?)
     - [ ] Decide on color space (JzAzBz vs classic RGB)
     - [ ] Define UI renderer integration (overlay on top of SDL3 window, imGui binding)
-    - [ ] Design abstraction layer for potential future backends (Vulkan primary, extensible)
+    - [ ] Design abstraction layer for potential future backends (OpenGL primary, extensible)
 - [ ] Audio design (see [audio section](./audio/main.md))
     - [X] Define mixing responsibilities: miniaudio (playback & effects) + SDL3 (mixing)
     - [X] Design `IAudioSource` interface (position, direction, volume, repeat, resource handle)

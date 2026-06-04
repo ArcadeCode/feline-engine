@@ -18,11 +18,11 @@ Also Feline engine will help the developer to manage the rendering pipeline, inc
 - Facilitating the loading and management of graphical assets through an asset pipeline.
 But the developer will have the freedom to implement more advanced rendering techniques if needed.
 
-## What's is the `GraphicBackend`?
-The `GraphicBacked` is an class who handle communication with the graphic backend, this component exist to give the opportunity to easily switch backend without recoding the complete `feline_graphic.dll` library.
+## What's is the `IGraphicBackend`?
+The `IGraphicBacked` is an class who handle communication with the graphic backend, this component exist to give the opportunity to easily switch backend without recoding the complete `feline_graphic.dll` library.
 
-## What's is the `Renderer`?
-The `Renderer` is an essential component of the Feline Engine responsible for managing the rendering process. It acts as an interface between the engine and the underlying graphics API (OpenGL) to facilitate the drawing of 2D graphics on the screen.
+## What's is the `IRenderer`?
+The `IRenderer` is an essential component of the Feline Engine responsible for managing the rendering process. It acts as an interface between the engine and the underlying graphics API (OpenGL) to facilitate the drawing of 2D graphics on the screen.
 
 See [Renderer](./renderer.md) for more details.
 
@@ -33,7 +33,16 @@ See [Scene](./scene.md) for more details.
 
 
 ### What's is a `DrawableObject` ?
-The `DrawableObject` is a fundamental entity in Feline Engine that represents any object that can be rendered on the screen. This includes sprites, shapes, text, and other graphical elements.
+The `DrawableObject` is a fundamental class which essentially include "Drawable trait" in Feline Engine that represents any object that can be rendered on the screen. This includes sprites, shapes, text, and other graphical elements. To be drawable is to be see in the rendering process.
+
+#### Commons DrawableObject
+Feline Engine offer some common `DrawableObject` such as :
+- Plane, Cube, Polygon, Sphere.
+- Mesh, Mesh2D, Mesh3D.
+- TextMesh, TextShader
+
+Plane, Cube, Polygon & Sphere are just group of polygon. Mesh, Mesh2D & Mesh3D represent loaded complex objects. Finally TextMesh represnt a text has a mesh  and TextShader represent a Text has a shader on a plane.
+
 
 ## Pipeline
 The rendering pipeline in Feline Engine is designed to be efficient and flexible, allowing developers to create visually appealing 2D graphics with ease. The pipeline consists of several stages:

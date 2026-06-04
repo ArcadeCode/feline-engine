@@ -1,13 +1,17 @@
-# What's is the ``Renderer``?
+# What's is the ``IRenderer``?
 
-The `Renderer` is the core component responsible for managing the rendering process in Feline Engine. It handles the drawing of all graphical elements, manages the rendering pipeline, and ensures that visual assets are displayed correctly on screen. The `Renderer` provides a high-level API for developers to interact with the rendering system, allowing them to create scenes, add drawable objects, and control rendering settings. It abstracts away the complexities of the underlying graphics API, making it easier for developers to focus on creating their games without worrying about low-level rendering details.
+The `IRenderer` is the core component responsible for managing the rendering process in Feline Engine. It handles the drawing of all graphical elements, manages the rendering pipeline, and ensures that visual assets are displayed correctly on screen. The `IRenderer` provides a high-level API for developers to interact with the rendering system, allowing them to create scenes, add drawable objects, and control rendering settings. It abstracts away the complexities of the underlying graphics API, making it easier for developers to focus on creating their games without worrying about low-level rendering details.
+
+An `IRenderer` directly send instructions to the `IGraphicBackend` then, instructions are translate via an Adaptor to a graphic backend.
+
+A `Camera` represent a viewport and a `IRenderer` into the `Scene`. Multiple `Camera` can be put into a `Scene` but all `Camera` will share the same `IGraphicBackend`.
 
 ## Lifecycle
 1. **Creation**: The `Renderer` is instantiated, initializing the rendering context and backend.
 2. **Configuration**: The `Renderer` is configured with settings using `loadConfiguration()` such as resolution, V-Sync, and other rendering options.
 3. **Initialization**: The `Renderer` sets up a `Scene` and necessary resources, shaders, and pipelines required for rendering using `initialize()`.
 4. **Rendering Loop**: The `Renderer` enters the main rendering loop, where it processes and renders the scene continuously using `renderScene()`.
-5. **Cleanup**: Upon application termination or when the `Renderer` is no longer needed, it cleans up resources and shuts down the rendering backend.
+5. **Cleanup**: Upon application termination or when the `Renderer` is no longer needed, it cleans up resources, the rendering backend will continue to work, while the `GameLoop` run, the `IGraphicBackend` continue to live, this help ensuring no overload.
 
 > [!NOTE] The Renderer configuration must be set before initialization. Changing configuration after initialization requieres using `reloadConfig()` which may lead to performance hits due to graphics pipeline recreation. See more information on [Renderer Configuration](./renderer_config.md).
 >
