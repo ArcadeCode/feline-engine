@@ -4,6 +4,8 @@
         "compilator",
         "constexpr",
         "Factorio",
+        "glsl",
+        "GLSL",
         "miniaudio",
         "pathfinding",
         "Rustc"

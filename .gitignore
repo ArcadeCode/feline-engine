@@ -1,2 +1,5 @@
 # Ignoring personal notes about the engine.
 ./docs/concept/questions.md
+
+# Vscode
+.vscode/

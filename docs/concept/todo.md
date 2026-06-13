@@ -14,9 +14,9 @@ This Todo file represent all phase of developpement of Feline Engine and the Fel
     - [ ] Define batching strategy (group by texture/shader)
     - [ ] Define post-processing pipeline (color grading, bloom, screen-space effects)
     - [ ] Decide on shader management (precompiled ? runtime compilation ?)
-    - [ ] Decide on color space (JzAzBz vs classic RGB)
+    - [X] Decide on color space (JzAzBz vs classic RGB)
     - [ ] Define UI renderer integration (overlay on top of SDL3 window, imGui binding)
-    - [ ] Design abstraction layer for potential future backends (OpenGL primary, extensible)
+    - [X] Design abstraction layer for potential future backends (OpenGL primary, extensible)
 - [ ] Audio design (see [audio section](./audio/main.md))
     - [X] Define mixing responsibilities: miniaudio (playback & effects) + SDL3 (mixing)
     - [X] Design `IAudioSource` interface (position, direction, volume, repeat, resource handle)
@@ -223,7 +223,7 @@ This Todo file represent all phase of developpement of Feline Engine and the Fel
 - [ ] Package the demo with the CLI tool
 - [ ] Run the demo on all 3 target platforms
 
-## Phase 6 : Deployment & Future ideas
+## Phase 6 : Deployment v1.0.0
 > End of the project. The engine runs autonomously at v1.0.0; all future features are additions.
 
 - [ ] Publish `feline_core`, `feline_graphic`, `feline_audio` as versioned releases (`vX.Y.Za`)
@@ -234,6 +234,11 @@ This Todo file represent all phase of developpement of Feline Engine and the Fel
     - [ ] `llvm-link` + `opt` global optimisation
     - [ ] Platform binaries generation (Linux, Windows, macOS)
     - [ ] Automated E2E test suite execution
+
+### Phase 7 : Switch to Vulkan backend & useful features
+> This is a long-term goal. The engine will be able to switch between OpenGL and Vulkan backends, and future features will be added.
+- [ ] Implement Vulkan backend with `VulkanGraphicApiAdapter` (start deprecated OpenGL backend)
 - [ ] Adding a Visual Novel template module.
+
+### Future proof
 - [ ] Adding a Polymorphic Stencil Compute Engine to compute Tilemap changes using a GPU.
-- [ ] 3D extension exploration (not a short-term goal — see project.md warning).
