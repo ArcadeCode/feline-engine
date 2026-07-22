@@ -1,5 +1,5 @@
 # TODO
-This Todo file represent all phase of developpement of Feline Engine and the Feline Editor.
+This Todo file represent all phase of development of Feline Engine and the Feline Editor.
 
 ## Phase 1 : Design (current)
 > This phase is only planning and designing comportements of each components.
@@ -40,7 +40,7 @@ This Todo file represent all phase of developpement of Feline Engine and the Fel
     - [ ] Define `Resource<T>` type contract (handle, resource ID, lifetime)
     - [ ] Define allocator strategy (arena, pool, per-subsystem allocators)
 - [ ] Pipeline & build design (see [compilation pipeline](./compilation.md))
-    - [X] Define multi-language compilation pipeline (C++ → LLVM IR via Clang, Rust → LLVM IR via rustc)
+    - [X] Define multi-language compilation pipeline (C++ → LLVM IR via Clang)
     - [X] Define LLVM IR linking strategy (llvm-link + opt global optimisations)
     - [X] Define cross-platform binary targets (Linux x86_64, Windows x86_64, macOS x86_64)
     - [ ] Define Makefile/CMake/Cargo automation structure
@@ -84,7 +84,7 @@ This Todo file represent all phase of developpement of Feline Engine and the Fel
     - [ ] Shader loading (SPIR-V precompiled)
     - [ ] Post-processing pass
     - [ ] imGui overlay binding (debug HUD: FPS, memory, tick rate)
-- [ ] ECS system development (Rust, `feline_core`)
+- [ ] ECS system development (C++, `feline_core`)
     - [ ] Component storage (chosen layout: SoA / archetypes)
     - [ ] Entity ID generation (64-bit + generation counter)
     - [ ] ECS array alignment
@@ -201,7 +201,6 @@ This Todo file represent all phase of developpement of Feline Engine and the Fel
 - [ ] `feline_core` unit tests (EDA, GameLoop, Resource, ECS, Job Scheduler, Allocators)
 - [ ] `feline_graphic` unit tests (Renderer, Scene, DrawableObject, culling, batching)
 - [ ] `feline_audio` unit tests (AudioBuffer, AudioStream, IAudioSource, IAudioEffect, AudioManager)
-- [ ] Rust modules unit tests via `cargo test` (ECS, Job Scheduler)
 - [ ] C++ modules unit tests via GTest
 
 ### E2E Tests
@@ -230,7 +229,6 @@ This Todo file represent all phase of developpement of Feline Engine and the Fel
 - [ ] Write public-facing documentation (API reference, getting started guide)
 - [ ] Set up CI/CD pipeline for automated multi-platform builds and E2E tests
     - [ ] C++ GTest pass → Clang LLVM IR
-    - [ ] Rust `cargo test` pass → rustc LLVM IR
     - [ ] `llvm-link` + `opt` global optimisation
     - [ ] Platform binaries generation (Linux, Windows, macOS)
     - [ ] Automated E2E test suite execution

@@ -11,7 +11,7 @@ The main goal of kitty is a mutliple allocation strategy for different use cases
 All these allocators can be used directly or developer can just use `Kitty::new()` and the engine will select the best allocator for the use case.
 
 ## Communication with the allocator
-Kitty isn't independant of the engine, Kitty allocate work with the engine and communicate by [EDA system](../eda/main.md).
+Kitty isn't independent of the engine, Kitty allocate work with the engine and communicate by [EDA system](../eda/main.md).
 
 Exemples of communication with the allocator:
 - When an entity is created, the engine will send a message to the allocator to allocate memory for the entity and its components.
@@ -40,4 +40,4 @@ The allocator API provides a set of functions for allocating and deallocating me
 > Kitty is a backend allocator, when you need to allocate a ressource, you should use the [Ressource Manager](../ressources/main.md) instead, the ressource manager will handle the communication with the allocator and provide additional features such as caching and reference counting. Do the same for entity, component, vector, etc... use the dedicated manager for this type of ressource.
 
 ## Why this name
-"Kitty" is in one of the main rules of the Feline Engine philophy : "In our team, cats aren't just pets — they're a statement, a lifestyle. 🐾" To asserve cats superiority the Allocator (one of the most complex part of the Engine) was named after most powerfull creatures of the species : Kitten.
+"Kitty" is in one of the main rules of the Feline Engine philosophy : "In our team, cats aren't just pets — they're a statement, a lifestyle. 🐾" To show up cats superiority the Allocator (one of the most complex part of the Engine) was named after most powerful creatures of the species : Kitten.

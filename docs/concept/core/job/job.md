@@ -1,4 +1,8 @@
 # Job scheduler (Manager) of Feline Engine
+
+> [!WARNING] Need rework
+> This section show too much for an simple concept file, code don't need to be this specific, need to rework on that.
+
 The job scheduler is a module of Feline Engine who manage the execution of jobs in parallel, with a focus on ECS updates. The job scheduler can send jobs to CPU threads to be executed in parallel and concurency.
 
 > [!NOTE] In a future-proof the Job scheduler will be send GPU jobs.

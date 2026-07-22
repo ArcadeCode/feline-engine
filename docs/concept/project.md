@@ -1,14 +1,14 @@
-# Feline Engine, 2D/2.5D specialized game engine
+# Feline Engine, a game engine focused around 2D/2.5D views.
 
 Feline Engine is a modern game engine specialized for games with the following camera types:
 - Top-down 2D (full view)
 - 2D top-down with rotation (n° view)
 - Isometric
 
-Feline Engine is **intentionally focused on 2D/2.5D** but nowday modern GPU doesn't use a full PPU pipeline, so use 3D rendering techniques to render 2D games, today Feline Engine is made for 2D games but it will be possible to make 3D games with it, but the engine won't be optimized for that and some features may be missing.
+By specialized we imply delivering simple tools for this type of camera type. But Feline isn't just an simple 2D engine. He also handle 3D games.
 
-> [!WARNING] 
-> A 3D version may exist in the future, but this is **not** a short term objective.
+> [!WARNING]
+> Feline engine isn't an 2D game engine, it's an 2D/3D game engine who support modern rendering systems.
 
 ## Projets goals
 ### Main goals
@@ -22,7 +22,7 @@ Feline Engine is **intentionally focused on 2D/2.5D** but nowday modern GPU does
     - A rendering system based on SDL3 and OpenGL/Vulkan*.
     - An audio system based on miniaudio and SDL3 mixer.
 - [ ] Developing a fully functional CI/CD pipeline for multi-languages testings, compilation, e2e, deployments.
-- [ ] Developing a GUI tool for game developers with the following minimal tools :
+- [ ] Developing a GUI tool (Feline editor) for game developers with the following minimal tools :
   - Real-time rendering windows
   - Debugger with benchmarking
   - Ressources explorer
@@ -59,10 +59,8 @@ These section explains all majors modules of the engine, by "major" we imply tha
 Several tools will be used for this project:
 - **Makefile**: To automate the entire pipeline.
 - **CMake**: For C++ automation and C library linking.
-- **Cargo**: For Rust automation and testing.
-- **LLVM**: For language linking.
+- **LLVM**: For project linking.
 - **Clang**: As C++, C and LLVM IR compilator.
-- **Rustc**: As Rust compilator.
 > [!TIP]
 > The full pipeline [is documented here](./compilation.md)
 
@@ -88,6 +86,9 @@ Several technologies will be used for this project :
 - **Rust 2025**: For ECS and job scheduler modules.
 - **SDL 3.2**: We use the 3.2.x because it's the latest at date of 2025/06/09.
 - **Miniaudio v0.11.22**: We use the 0.11.22 because it's the latest at date of 2025/06/09.
+
+> [!WARNING]
+> SDL we surely be removed, the current objective is an direct access to an graphic api.
 
 ## Game loops
 Feline Engine follow this game loop :

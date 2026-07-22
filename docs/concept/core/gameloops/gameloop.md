@@ -1,7 +1,7 @@
 # Game loops
 
 > [!NOTE] Language to use
-> For now, Rust seem the best language for the game loop, because the Job scheduler will wrote in Rust
+> For now, C++ seem the best language for the game loop, see [ADR-006](../../../adr/ADR-006-cpp-for-the-core.md) for more informations.
 
 There is two loops in a modern engine like FE :
 - The Game/Logic loop
