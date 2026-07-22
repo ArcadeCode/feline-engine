@@ -54,6 +54,72 @@ These section explains all majors modules of the engine, by "major" we imply tha
 - `Render System` — graphic rendering system based on [SDL3](https://github.com/libsdl-org/SDL) mounted [on abstracted layer](./render/render.md).
 - [`Audio System`](./audio/audio.md) — audio playback and management based on [miniaudio](https://miniaud.io/) bridged with [SDL3](https://github.com/libsdl-org/SDL) mounted on C++ wrapper for better clarity.
 
+## Architecture
+
+Feline Engine is organized as a **monorepo** containing several independent
+libraries (`feline_core`, `feline_graphic`, `feline_audio`), all built and
+versioned together, but designed to remain **replaceable in isolation**.
+
+> [!NOTE]
+> The core was initially planned in Rust, then reverted to C++17 for
+> practical reasons. See [ADR-006](../adr/ADR-006-cpp-for-the-core.md) for
+> the full context and [ADR-005](../adr/ADR-005-gameloop-in-rust.md) for the
+> original decision it supersedes.
+
+### Library layout
+
+Each library follows a strict `include/` / `src/` split:
+```
+libs/<library_name>/
+├── include/feline/<library_name>/ # public API, visible to other modules
+└── src/ # private implementation
+```
+Only what lives under `include/` may be used by another library or by game
+code. Anything under `src/` (for example `AudioBuffer` or `AudioStream` in
+`feline_audio`) is an implementation detail and must never be included
+directly from outside its own library.
+
+### Isolation strategy
+
+Because `feline_core`, `feline_graphic` and `feline_audio` are meant to
+evolve independently — including a possible future migration of parts of
+`feline_core` to Rust — no library is allowed to reach into another
+library's internal data structures. Communication between libraries always
+goes through one of two stable bridges:
+
+- **Event bridge (EDA)** — asynchronous notifications and orchestration
+  (`TickStartedEvent`, `JobRequestEvent`, `ResourceLoadEvent`, ...) are
+  published and subscribed to through the [EDA bus](./core/eda/main.md).
+  Since an `Event` only carries a primitive `EventID` and its payload, this
+  bridge is trivially portable across languages via FFI.
+- **Direct API bridge (flat C interface)** — synchronous, high-frequency
+  calls (allocator, math primitives, ECS component access) go through a
+  flat `extern "C"` interface, without exposing C++ templates or classes
+  across the library boundary. This keeps the ABI stable even if the
+  implementation behind it changes language.
+
+This constraint is what allows a library — most likely `feline_core`'s Job
+Scheduler and ECS, the two components where memory-safety guarantees matter
+most — to be rewritten or replaced later without requiring changes in
+`feline_graphic`, `feline_audio`, or any game code built on top of the
+engine.
+
+### Why a monorepo instead of one repository per library
+
+Splitting each library into its own repository was considered but rejected
+for the current phase of the project: Feline Engine is developed solo and
+is still in active design, meaning APIs between `feline_core`,
+`feline_graphic` and `feline_audio` change frequently. A monorepo keeps a
+single source of truth and a single commit history across all libraries,
+avoiding the overhead of synchronizing multiple repositories (or Git
+submodules) for what is, most of the time, a single logical change spanning
+several libraries.
+
+> [!TIP]
+> A library could be extracted into its own repository later — for example
+> if `feline_audio` became a general-purpose library reused outside of
+> Feline Engine — but this is not a decision to make preemptively.
+
 ## Tools and techs
 ### Used tool
 Several tools will be used for this project:
